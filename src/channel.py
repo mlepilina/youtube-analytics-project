@@ -25,6 +25,36 @@ class Channel:
         self.video_count = int(channel['items'][0]['statistics']['videoCount'])
         self.view_count = int(channel['items'][0]['statistics']['viewCount'])
 
+    def __str__(self):
+        """Возвращает название и ссылку на канал"""
+        return f'{self.title} ({self.url})'
+
+    def __add__(self, other):
+        """Выполняет сложение количества подписчиков класса с
+        количеством подписчиков другого класса"""
+        return self.subscriber_count + other.subscriber_count
+
+    def __sub__(self, other):
+        """Выполняет вычитание из количества подписчиков класса
+        количество подписчиков другого класса"""
+        return self.subscriber_count - other.subscriber_count
+
+    def __lt__(self, other):
+        """Выполняет операцию сравнения подписчиков «меньше»"""
+        return self.subscriber_count < other.subscriber_count
+
+    def __le__(self, other):
+        """Выполняет операцию сравнения подписчиков «меньше или равно»"""
+        return self.subscriber_count <= other.subscriber_count
+
+    def __gt__(self, other):
+        """Выполняет операцию сравнения подписчиков «больше»"""
+        return self.subscriber_count > other.subscriber_count
+
+    def __ge__(self, other):
+        """Выполняет операцию сравнения подписчиков «больше или равно»"""
+        return self.subscriber_count >= other.subscriber_count
+
     @property
     def channel_id(self):
         return self.__channel_id
