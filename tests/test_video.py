@@ -10,6 +10,11 @@ def video_1():
 
 
 @pytest.fixture()
+def video_broken_id():
+    return Video('broken_video_id')
+
+
+@pytest.fixture()
 def playlist_1():
     return PLVideo('4fObz_qw9u4', 'PLv_zOGKKxVph_8g2Mqc3LMhj0M_BfasbC')
 
@@ -31,5 +36,10 @@ def test_str_2(playlist_1):
     assert str(playlist_1) == 'MoscowPython Meetup 78 - вступление'
 
 
-
+def test_broken_id(video_broken_id):
+    """Тестируем обработку исключений при несуществующем id видео"""
+    assert video_broken_id.title is None
+    assert video_broken_id.like_count is None
+    assert video_broken_id.view_count is None
+    assert video_broken_id.url is None
 
